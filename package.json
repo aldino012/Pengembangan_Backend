@@ -1,0 +1,22 @@
+{
+  "name": "buat_project",
+  "version": "1.0.0",
+  "description": "project_sederhana",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aldino012/Pengembangan_Backend.git"
+  },
+  "author": "aldino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aldino012/Pengembangan_Backend/issues"
+  },
+  "homepage": "https://github.com/aldino012/Pengembangan_Backend#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

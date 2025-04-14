@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "namabarang": "laptop Gaming",
+    "jumlahbarang": "200 Buah",
+    "jenis_barang": "Elektronik",
+    "harga": 3100000000
+  },
+  {
+    "id": 1,
+    "namabarang": "laptop Gaming",
+    "jumlahbarang": "200 Buah",
+    "jenis_barang": "Elektronik",
+    "harga": 3100000000
+  },
+  {
+    "id": 1,
+    "namabarang": "laptop Gaming",
+    "jumlahbarang": "200 Buah",
+    "jenis_barang": "Elektronik",
+    "harga": 3100000000
+  },
+  {
+    "id": 4,
+    "namabarang": "sepeda lipat",
+    "jumlahbarang": "80 Buah",
+    "jenis_barang": "Olahraga",
+    "harga": 96000000
+  }
+]
