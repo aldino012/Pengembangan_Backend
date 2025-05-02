@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "namaBarang": "Pensil dan Penghapus",
+    "jumlahBarang": 200,
+    "terjual": 100,
+    "sisa": 100,
+    "updateAt": "2025-03-01T00:00:00Z"
+  },
+  {
+    "id": 2,
+    "namaBarang": "Kabel Lan",
+    "jumlahBarang": 150,
+    "terjual": 100,
+    "sisa": 50,
+    "updateAt": "2025-03-10T00:00:00Z"
+  },
+  {
+    "id": 3,
+    "namaBarang": "TV 24 Inch",
+    "jumlahBarang": 200,
+    "terjual": 200,
+    "sisa": 0,
+    "updateAt": "2025-02-11T00:00:00Z"
+  },
+  {
+    "id": 4,
+    "namaBarang": "Laptop",
+    "jumlahBarang": 100,
+    "terjual": 20,
+    "sisa": 80,
+    "updateAt": "2025-04-12T00:00:00Z"
+  },
+  {
+    "id": 5,
+    "namaBarang": "Monitor",
+    "jumlahBarang": 50,
+    "terjual": 10,
+    "sisa": 40,
+    "updateAt": "2025-03-10T00:00:00Z"
+  }
+]
