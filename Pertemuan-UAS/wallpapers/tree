@@ -1,0 +1,71 @@
+wallpapers
+ ┣ Backend
+ ┃ ┣ configs
+ ┃ ┃ ┗ db.js
+ ┃ ┣ controllers
+ ┃ ┃ ┗ wallpaperController.js
+ ┃ ┣ middleware
+ ┃ ┃ ┗ upload.js
+ ┃ ┣ models
+ ┃ ┃ ┗ wallpaper.js
+ ┃ ┣ routes
+ ┃ ┃ ┣ download.js
+ ┃ ┃ ┗ wallpapers.js
+ ┃ ┣ sql
+ ┃ ┃ ┗ wallpaper_site (1).sql
+ ┃ ┣ uploads
+ ┃ ┃ ┣ resized-image-1751083566441.jpg
+ ┃ ┃ ┗ resized-image-1751154926912.jpg
+ ┃ ┣ .env
+ ┃ ┣ package-lock.json
+ ┃ ┣ package.json
+ ┃ ┗ server.js
+ ┗ Frontend
+ ┃ ┣ app
+ ┃ ┃ ┣ add
+ ┃ ┃ ┃ ┗ page.jsx
+ ┃ ┃ ┣ dashboard
+ ┃ ┃ ┃ ┣ add
+ ┃ ┃ ┃ ┃ ┗ page.jsx
+ ┃ ┃ ┃ ┣ edit
+ ┃ ┃ ┃ ┃ ┗ [slug]
+ ┃ ┃ ┃ ┃ ┃ ┗ page.jsx
+ ┃ ┃ ┃ ┣ table
+ ┃ ┃ ┃ ┃ ┗ page.jsx
+ ┃ ┃ ┃ ┣ layout.jsx
+ ┃ ┃ ┃ ┗ page.jsx
+ ┃ ┃ ┣ detail
+ ┃ ┃ ┃ ┗ [slug]
+ ┃ ┃ ┃ ┃ ┗ page.jsx
+ ┃ ┃ ┣ edit
+ ┃ ┃ ┃ ┗ [slug]
+ ┃ ┃ ┃ ┃ ┗ page.jsx
+ ┃ ┃ ┣ favicon.ico
+ ┃ ┃ ┣ globals.css
+ ┃ ┃ ┣ layout.js
+ ┃ ┃ ┣ page.js
+ ┃ ┃ ┗ page.module.css
+ ┃ ┣ components
+ ┃ ┃ ┣ Content.jsx
+ ┃ ┃ ┣ DashboardPage.jsx
+ ┃ ┃ ┣ Detail.jsx
+ ┃ ┃ ┣ Footer.jsx
+ ┃ ┃ ┣ Navbar.jsx
+ ┃ ┃ ┣ Sidebar.jsx
+ ┃ ┃ ┣ TabelWallpaper.jsx
+ ┃ ┃ ┗ WallpaperForm.jsx
+ ┃ ┣ public
+ ┃ ┃ ┣ img
+ ┃ ┃ ┃ ┣ images.jpg
+ ┃ ┃ ┃ ┗ logo.png
+ ┃ ┃ ┣ next.svg
+ ┃ ┃ ┗ vercel.svg
+ ┃ ┣ .eslintrc.json
+ ┃ ┣ .gitignore
+ ┃ ┣ README.md
+ ┃ ┣ jsconfig.json
+ ┃ ┣ next.config.js
+ ┃ ┣ package-lock.json
+ ┃ ┣ package.json
+ ┃ ┣ postcss.config.js
+ ┃ ┗ tailwind.config.js
