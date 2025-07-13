@@ -1,14 +1,20 @@
-"use client";
+"use client"; // Menandakan bahwa komponen ini dijalankan di sisi client (browser)
 
 import { useEffect, useState } from "react";
-import axios from "axios";
-import WallpaperForm from "./WallpaperForm";
+import axios from "axios"; // Library untuk HTTP request
+import WallpaperForm from "./WallpaperForm"; // Komponen form untuk tambah/edit wallpaper
 
 export default function TabelWallpaper() {
+  // State untuk menyimpan daftar wallpaper
   const [wallpapers, setWallpapers] = useState([]);
-  const [selectedWallpaper, setSelectedWallpaper] = useState(null);
-  const [searchTerm, setSearchTerm] = useState(""); // 🔷 search term
 
+  // State untuk menyimpan wallpaper yang sedang diedit
+  const [selectedWallpaper, setSelectedWallpaper] = useState(null);
+
+  // State untuk input pencarian
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Fungsi untuk mengambil semua data wallpaper dari server
   const fetchWallpapers = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/wallpapers");
@@ -18,10 +24,12 @@ export default function TabelWallpaper() {
     }
   };
 
+  // Ambil data saat komponen pertama kali di-render
   useEffect(() => {
     fetchWallpapers();
   }, []);
 
+  // Fungsi untuk menghapus wallpaper
   const handleDelete = async (id) => {
     const confirmed = confirm(
       "Apakah kamu yakin ingin menghapus wallpaper ini?"
@@ -31,17 +39,19 @@ export default function TabelWallpaper() {
     try {
       await axios.delete(`http://localhost:5000/api/wallpapers/${id}`);
       alert("Wallpaper berhasil dihapus");
-      fetchWallpapers();
+      fetchWallpapers(); // Refresh data setelah hapus
     } catch (error) {
       console.error("Gagal menghapus wallpaper:", error);
       alert("Terjadi kesalahan saat menghapus wallpaper");
     }
   };
 
+  // Fungsi saat tombol Edit ditekan
   const handleEditClick = (item) => {
     setSelectedWallpaper(item);
   };
 
+  // Filter wallpaper sesuai pencarian
   const filteredWallpapers = wallpapers.filter(
     (item) =>
       item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -65,7 +75,7 @@ export default function TabelWallpaper() {
         />
       </div>
 
-      {/* Tampilan Mobile */}
+      {/* 🔷 Tampilan Mobile */}
       <div className="md:hidden space-y-4">
         {filteredWallpapers.length === 0 ? (
           <div className="text-center py-4 text-[#e0e0e0]">
@@ -109,7 +119,7 @@ export default function TabelWallpaper() {
         )}
       </div>
 
-      {/* Tampilan Desktop */}
+      {/* 🔷 Tampilan Desktop */}
       <div className="hidden md:block overflow-x-auto">
         <table className="table table-zebra w-full">
           <thead className="bg-[#bfa930] text-[#1a1a2e]">
@@ -164,7 +174,7 @@ export default function TabelWallpaper() {
         </table>
       </div>
 
-      {/* Form Edit Wallpaper */}
+      {/* 🔷 Form Edit Wallpaper */}
       {selectedWallpaper && (
         <div className="mt-6 p-4 border border-gray-600 rounded-lg bg-[#2c2c3c] relative">
           <button
@@ -185,8 +195,8 @@ export default function TabelWallpaper() {
               image_url: `http://localhost:5000${selectedWallpaper.image_url}`,
             }}
             onSuccess={() => {
-              setSelectedWallpaper(null);
-              fetchWallpapers();
+              setSelectedWallpaper(null); // Tutup form setelah berhasil
+              fetchWallpapers(); // Refresh data
             }}
           />
         </div>

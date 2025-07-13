@@ -1,34 +1,129 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+/app
+layout.jsx berfungsi sebagai memuat semua komponen halaman seperti Navbar Footer
+page.jsx berfungsi sebagai memuat halaman utama atau HomePage
+globals.css berfungsi style css secara globals
+CSS modul yang mungkin dipakai khusus di page.jsx atau komponen tertentu.
+favicon.ico adalah icon yang ada di title
 
-## Getting Started
+/app/user/add/page.jsx
+berfungsi memuat halaman Form Tambah bagi uploader atau user
 
-First, run the development server:
+/app/detail/[slug]/page.jsx
+berfungsi untuk mengaambil data atau fetching data ke backend berdasarkan [id] dan akan memuat tampilan Detail.jsx
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+/app/user/edit/[slug]/page.jsx
+berfungsi untuk melakukan edit data berdasarkan [id] dan data nya mengambil dari backend
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+/app/user/layout.jsx
+berfungsi sebagai melakukan memanggil tampilan Sidebar.jsx pada components
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+/app/user/page.jsx
+berfungsi sebagai melakukan memanggil tampilan Userdashboard
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+/app/login/page.jsx
+berfungsi untuk memuat/memanggil halaman login dan tampilan nya mengambil dari components
 
-## Learn More
+/app/register/page.jsx
+berfungsi untuk memuat/memanggil halaman register dan tampilan nya mengambil dari components
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# 📁 Dokumentasi Komponen Frontend
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Berikut adalah penjelasan fungsi folder `/components` beserta semua komponen yang ada di dalamnya.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📂 `/components`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Folder ini berfungsi sebagai **wadah untuk semua komponen UI** yang bersifat reusable (dapat digunakan di banyak halaman), seperti Navbar, Footer, Content, Form, dsb.
+
+---
+
+### 📄 `/components/Content.jsx`
+Komponen utama yang menampilkan **semua wallpaper** di homepage.
+
+---
+
+### 📄 `/components/DashboardPage.jsx`
+Komponen khusus untuk **admin**, berfungsi sebagai dashboard untuk melakukan **CRUD** (Create, Read, Update, Delete) wallpaper atau data lain.
+
+---
+
+### 📄 `/components/Detail.jsx`
+Komponen utama untuk menampilkan **detail** dari satu wallpaper tertentu, termasuk informasi lengkapnya.
+
+---
+
+### 📄 `/components/Footer.jsx`
+Komponen bagian bawah (footer) situs.  
+Biasanya berisi informasi seperti hak cipta, link tambahan, atau kontak.
+
+---
+
+### 📄 `/components/FormLogin.jsx`
+Form untuk halaman **login**.  
+Memuat input email, password, dan tombol submit.
+
+---
+
+### 📄 `/components/FormRegister.jsx`
+Form untuk halaman **registrasi**.  
+Memuat input nama, email, password, dan tombol submit untuk mendaftar akun baru.
+
+---
+
+### 📄 `/components/Navbar.jsx`
+Navigasi utama yang berada di bagian atas situs.  
+Berisi link ke halaman utama, login, register, dashboard, dll.
+
+---
+
+### 📄 `/components/Sidebar.jsx`
+Sidebar khusus untuk **admin**.  
+Berisi menu navigasi ke dashboard admin, tambah, edit, tabel wallpaper, dll.
+
+---
+
+### 📄 `/components/SidebarUser.jsx`
+Sidebar khusus untuk **user biasa**.  
+Berisi menu navigasi ke dashboard user, edit profil, logout, dll.
+
+---
+
+### 📄 `/components/TabelWallpaper.jsx`
+Komponen tabel yang menampilkan daftar wallpaper dalam bentuk tabel.  
+Biasanya digunakan oleh admin, lengkap dengan tombol **edit** dan **hapus** untuk masing-masing wallpaper.
+
+---
+
+### 📄 `/components/WallpaperForm.jsx`
+Form untuk **menambahkan** atau **mengedit** wallpaper.  
+Biasanya berisi input seperti judul, deskripsi, dan upload file gambar.
+
+---
+
+## ✨ Ringkasan Komponen
+
+| 📄 Komponen                   | 📝 Fungsi |
+|-------------------------------|-----------|
+| `Content.jsx`                 | Menampilkan semua wallpaper di homepage |
+| `DashboardPage.jsx`           | Dashboard admin untuk CRUD |
+| `Detail.jsx`                  | Menampilkan detail satu wallpaper |
+| `Footer.jsx`                  | Footer situs |
+| `FormLogin.jsx`               | Form login user |
+| `FormRegister.jsx`            | Form registrasi user |
+| `Navbar.jsx`                  | Navigasi utama (atas) |
+| `Sidebar.jsx`                 | Sidebar admin |
+| `SidebarUser.jsx`             | Sidebar user |
+| `TabelWallpaper.jsx`          | Tabel daftar wallpaper untuk admin |
+| `WallpaperForm.jsx`           | Form tambah/edit wallpaper |
+
+---
+
+Dokumentasi ini menjelaskan fungsi masing-masing komponen di folder `/components` pada proyek frontend wallpaper-mu.  
+Jika ingin, dokumentasi untuk folder lain (`/app`, `/public`, dll.) juga bisa saya buatkan. Cukup bilang saja. 🚀
+
+
+/public 
+berfungsi menyimpan semua assets gambar
+

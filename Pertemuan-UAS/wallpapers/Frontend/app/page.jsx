@@ -1,4 +1,4 @@
-// Frontend/app/page.js
+// Frontend/app/page.jsx
 
 import WallpaperGrid from "../components/Content"; // sesuaikan nama komponen
 

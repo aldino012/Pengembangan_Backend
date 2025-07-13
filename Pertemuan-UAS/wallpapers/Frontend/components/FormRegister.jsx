@@ -1,8 +1,10 @@
 "use client";
+// 👉 Komponen ini berjalan di sisi klien/browser.
 
 import { useState } from "react";
 
 export default function FormRegister() {
+  // 🔷 State untuk form
   const [form, setForm] = useState({
     username: "",
     email: "",
@@ -11,37 +13,40 @@ export default function FormRegister() {
     role: "user",
   });
 
-  const [photo, setPhoto] = useState(null);
-  const [photoPreview, setPhotoPreview] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [photo, setPhoto] = useState(null); // untuk file foto yang dipilih
+  const [photoPreview, setPhotoPreview] = useState(null); // untuk menampilkan preview foto
+  const [loading, setLoading] = useState(false); // untuk status loading
 
+  // 🔷 Handler untuk input text & select
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // 🔷 Handler untuk file foto
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setPhoto(file);
-      setPhotoPreview(URL.createObjectURL(file));
+      setPhotoPreview(URL.createObjectURL(file)); // buat preview
     }
   };
 
+  // 🔷 Handler untuk submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // ✅ Validasi password sama
+    // ✋ Validasi password
     if (form.password !== form.confirmPassword) {
       alert("Password dan Konfirmasi Password tidak sama!");
       return;
     }
 
-    // ✅ Validasi panjang password
     if (form.password.length < 6 || form.password.length > 8) {
       alert("Password harus 6-8 karakter.");
       return;
     }
 
+    // 🔷 Siapkan data untuk dikirim
     const formData = new FormData();
     formData.append("username", form.username);
     formData.append("email", form.email);
@@ -81,6 +86,7 @@ export default function FormRegister() {
       onSubmit={handleSubmit}
       className="space-y-6 bg-[#2c2c3c] text-[#e0e0e0] rounded-lg shadow-lg w-full max-w-md mx-auto p-8 md:p-10"
     >
+      {/* Judul */}
       <h2 className="text-3xl font-bold text-center text-[#fbc02d]">
         Register
       </h2>
@@ -89,6 +95,7 @@ export default function FormRegister() {
       </p>
 
       <div className="space-y-4">
+        {/* Username */}
         <div>
           <label className="block mb-1 text-base font-medium">Username</label>
           <input
@@ -102,6 +109,7 @@ export default function FormRegister() {
           />
         </div>
 
+        {/* Email */}
         <div>
           <label className="block mb-1 text-base font-medium">Email</label>
           <input
@@ -115,6 +123,7 @@ export default function FormRegister() {
           />
         </div>
 
+        {/* Password */}
         <div>
           <label className="block mb-1 text-base font-medium">Password</label>
           <input
@@ -131,6 +140,7 @@ export default function FormRegister() {
           </p>
         </div>
 
+        {/* Konfirmasi Password */}
         <div>
           <label className="block mb-1 text-base font-medium">
             Konfirmasi Password
@@ -146,6 +156,7 @@ export default function FormRegister() {
           />
         </div>
 
+        {/* Role */}
         <div>
           <label className="block mb-1 text-base font-medium">Role</label>
           <select
@@ -159,6 +170,7 @@ export default function FormRegister() {
           </select>
         </div>
 
+        {/* Foto Profil */}
         <div>
           <label className="block mb-1 text-base font-medium">
             Foto Profil
@@ -184,6 +196,7 @@ export default function FormRegister() {
         </div>
       </div>
 
+      {/* Tombol Submit */}
       <button
         type="submit"
         disabled={loading}

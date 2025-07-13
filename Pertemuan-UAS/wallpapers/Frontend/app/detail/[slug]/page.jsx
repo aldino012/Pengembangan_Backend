@@ -1,30 +1,37 @@
 // app/detail/[slug]/page.jsx
-"use client"; // Menandakan bahwa komponen ini dijalankan di sisi klien
 
-import { useEffect, useState } from "react"; // Mengimpor hook untuk efek samping dan state
-import { useParams } from "next/navigation"; // Mengimpor hook untuk mendapatkan parameter URL
-import Detail from "../../../components/Detail"; // Mengimpor komponen Detail untuk menampilkan detail wallpaper
+"use client"; // Komponen ini berjalan di sisi browser (client-side)
 
-export default function DetailPage() { // Fungsi komponen DetailPage
-  const { slug } = useParams(); // Mengambil parameter slug dari URL
-  const [wallpaper, setWallpaper] = useState(null); // State untuk menyimpan data wallpaper
+import { useEffect, useState } from "react"; // untuk state & efek samping
+import { useParams } from "next/navigation"; // untuk mengambil parameter dari URL
+import Detail from "../../../components/Detail"; // komponen untuk menampilkan detail wallpaper
 
-  useEffect(() => { // Hook useEffect untuk menjalankan efek samping
-    if (!slug) return; // Jika slug tidak ada, jangan lakukan apapun
-    const fetchData = async () => { // Fungsi async untuk mengambil data dari API
-      const res = await fetch(`http://localhost:5000/api/wallpapers/${slug}`); // Fetch data berdasarkan slug
-      const data = await res.json(); // Mengonversi response menjadi JSON
-      setWallpaper(data); // Menyimpan data ke state
+// Komponen halaman detail wallpaper
+export default function DetailPage() {
+  const { slug } = useParams(); // ambil parameter `slug` dari URL (misalnya: /detail/1 → slug = 1)
+  const [wallpaper, setWallpaper] = useState(null); // state untuk menyimpan data wallpaper
+
+  // Ambil data wallpaper dari API ketika halaman dimuat atau slug berubah
+  useEffect(() => {
+    if (!slug) return; // jika slug belum ada, jangan fetch dulu
+
+    const fetchData = async () => {
+      const res = await fetch(`http://localhost:5000/api/wallpapers/${slug}`); // ambil data dari backend
+      const data = await res.json(); // ubah response jadi JSON
+      setWallpaper(data); // simpan data ke state
     };
-    fetchData(); // Memanggil fungsi fetchData
-  }, [slug]); // Efek dijalankan ulang ketika slug berubah
 
-  if (!wallpaper) return <p className="text-white">Loading...</p>; // Menampilkan teks loading jika data belum ada
+    fetchData(); // panggil fungsi fetchData
+  }, [slug]); // jalankan ulang jika slug berubah
 
-  return ( // Mengembalikan elemen JSX
-    <main className="min-h-screen bg-[#1e1e2f] text-white p-5"> 
-      <Detail wallpaper={wallpaper} /> {/* Menggunakan komponen Detail untuk menampilkan data wallpaper */}
+  // Jika data belum ada, tampilkan tulisan loading
+  if (!wallpaper) return <p className="text-white">Loading...</p>;
+
+  // Jika data sudah ada, tampilkan detail wallpaper
+  return (
+    <main className="min-h-screen bg-[#1e1e2f] text-white p-5">
+      {/* kirim data wallpaper ke komponen Detail */}
+      <Detail wallpaper={wallpaper} />
     </main>
   );
 }
-

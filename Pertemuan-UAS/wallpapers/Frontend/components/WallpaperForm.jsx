@@ -1,48 +1,48 @@
-"use client"; // Komponen ini hanya dijalankan di sisi browser (client)
+"use client"; // 🔷 Menandakan komponen ini hanya dijalankan di sisi browser (client)
 
-import { useState } from "react"; // Untuk mengatur state input & pesan
+import { useState } from "react"; // 📦 Import hook useState untuk state form
 
 export default function WallpaperForm({
   mode = "create", // Mode form: 'create' (tambah) atau 'edit'
   initialData = {}, // Data awal untuk mode edit
-  slug, // ID wallpaper saat edit
-  onSuccess, // Fungsi callback setelah sukses
+  slug, // ID wallpaper (dipakai saat edit)
+  onSuccess, // Callback yang dipanggil setelah submit sukses
 }) {
-  const isEdit = mode === "edit"; // Cek apakah form ini dalam mode edit
+  const isEdit = mode === "edit"; // cek apakah form sedang mode edit atau tambah
 
-  // State untuk mengatur status loading, error, sukses, dan preview gambar
+  // 🔷 State untuk loading, pesan error, pesan sukses, dan preview gambar
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   const [previewImage, setPreviewImage] = useState(initialData.image_url || "");
 
-  // Fungsi saat pengguna memilih gambar
+  // 🔷 Ketika file gambar dipilih
   const handleImageChange = (e) => {
-    const file = e.target.files[0]; // Ambil file pertama
+    const file = e.target.files[0]; // ambil file pertama
     if (file) {
-      const ext = file.name.split(".").pop().toLowerCase(); // Ambil ekstensi file
+      const ext = file.name.split(".").pop().toLowerCase(); // cek ekstensi
       if (ext !== "jpg" && ext !== "jpeg") {
         setErrorMsg("File harus berformat .jpg atau .jpeg");
         return;
       }
       setErrorMsg("");
-      setPreviewImage(URL.createObjectURL(file)); // Tampilkan preview
+      setPreviewImage(URL.createObjectURL(file)); // tampilkan preview
     }
   };
 
-  // Fungsi saat form dikirim
+  // 🔷 Saat form dikirim
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Mencegah reload halaman
+    e.preventDefault(); // cegah reload
     setErrorMsg("");
     setSuccessMsg("");
     setLoading(true);
 
     const form = e.target;
-    const formData = new FormData(form); // Buat objek FormData
+    const formData = new FormData(form); // buat FormData
 
     const fileInput = form.elements["image"];
 
-    // Validasi file jika mode create
+    // jika tambah, pastikan ada file & validasi file
     if (!isEdit) {
       const file = fileInput.files[0];
       if (!file) {
@@ -59,6 +59,7 @@ export default function WallpaperForm({
     }
 
     try {
+      // tentukan endpoint & method berdasarkan mode
       const endpoint = isEdit
         ? `http://localhost:5000/api/wallpapers/${slug}`
         : `http://localhost:5000/api/wallpapers`;
@@ -74,6 +75,7 @@ export default function WallpaperForm({
         throw new Error(data.error || "Gagal mengirim data");
       }
 
+      // jika sukses
       setSuccessMsg(
         isEdit
           ? "Wallpaper berhasil diperbarui!"
@@ -81,13 +83,13 @@ export default function WallpaperForm({
       );
 
       if (!isEdit) {
-        form.reset(); // Kosongkan form setelah tambah
-        setPreviewImage(""); // Kosongkan preview
+        form.reset(); // kosongkan form
+        setPreviewImage(""); // hilangkan preview
       }
 
-      if (onSuccess) onSuccess(); // Jalankan callback jika ada
+      if (onSuccess) onSuccess(); // jalankan callback jika ada
     } catch (error) {
-      setErrorMsg(error.message); // Tampilkan error jika ada
+      setErrorMsg(error.message); // tampilkan pesan error
     } finally {
       setLoading(false);
     }
@@ -100,7 +102,7 @@ export default function WallpaperForm({
         className="space-y-6"
         encType="multipart/form-data"
       >
-        {/* Judul */}
+        {/* 🔷 Judul & deskripsi form */}
         <div className="text-center mb-4">
           <h1 className="text-2xl font-bold text-yellow-400">
             {isEdit
@@ -114,19 +116,19 @@ export default function WallpaperForm({
           </p>
         </div>
 
-        {/* Tampilkan pesan error */}
+        {/* 🔷 Tampilkan pesan error */}
         {errorMsg && (
           <p className="text-red-500 text-center font-semibold">{errorMsg}</p>
         )}
 
-        {/* Tampilkan pesan sukses */}
+        {/* 🔷 Tampilkan pesan sukses */}
         {successMsg && (
           <p className="text-green-500 text-center font-semibold">
             {successMsg}
           </p>
         )}
 
-        {/* Input Nama Uploader */}
+        {/* 🔷 Input Nama Uploader */}
         <div className="form-control">
           <label className="label">
             <span className="label-text text-yellow-400">Nama Uploader</span>
@@ -140,7 +142,7 @@ export default function WallpaperForm({
           />
         </div>
 
-        {/* Input Nama Wallpaper */}
+        {/* 🔷 Input Nama Wallpaper */}
         <div className="form-control">
           <label className="label">
             <span className="label-text text-yellow-400">Nama Wallpaper</span>
@@ -154,7 +156,7 @@ export default function WallpaperForm({
           />
         </div>
 
-        {/* Input Deskripsi */}
+        {/* 🔷 Input Deskripsi */}
         <div className="form-control">
           <label className="label">
             <span className="label-text text-yellow-400">Deskripsi</span>
@@ -168,7 +170,7 @@ export default function WallpaperForm({
           ></textarea>
         </div>
 
-        {/* Input Resolusi (tidak bisa diubah) */}
+        {/* 🔷 Input Resolusi (non-editable) */}
         <div className="form-control">
           <label className="label">
             <span className="label-text text-yellow-400">Resolusi</span>
@@ -182,7 +184,7 @@ export default function WallpaperForm({
           />
         </div>
 
-        {/* Input Gambar */}
+        {/* 🔷 Input Gambar */}
         <div className="form-control">
           <label className="label">
             <span className="label-text text-yellow-400">Gambar</span>
@@ -193,14 +195,14 @@ export default function WallpaperForm({
             accept=".jpg,.jpeg"
             className="file-input file-input-bordered bg-base-100 text-white"
             onChange={handleImageChange}
-            {...(!isEdit && { required: true })} // Hanya wajib saat tambah
+            {...(!isEdit && { required: true })} // wajib saat tambah
           />
           <span className="text-xs text-gray-400 mt-1 italic">
             *Gambar harus berformat .jpg atau .jpeg
           </span>
         </div>
 
-        {/* Preview Gambar */}
+        {/* 🔷 Preview Gambar */}
         {previewImage && (
           <div className="mt-4">
             <p className="text-sm text-gray-400 mb-1">Preview Gambar:</p>
@@ -212,7 +214,7 @@ export default function WallpaperForm({
           </div>
         )}
 
-        {/* Tombol Submit */}
+        {/* 🔷 Tombol Submit */}
         <div className="form-control mt-6">
           <button
             type="submit"
